@@ -22,8 +22,6 @@ void display_setup() {
     // Make the CS pin availible to picotool
     bi_decl(bi_1pin_with_name(D_CS, "SPI CS"));
 
-    gpio_put(D_CS, 0);
-
     // Set up the data/command pin
     gpio_init(D_DorC);
     gpio_set_dir(D_DorC, GPIO_OUT);
