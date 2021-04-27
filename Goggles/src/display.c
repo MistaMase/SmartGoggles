@@ -5,8 +5,8 @@ void display_setup() {
     // Set up the backlight
     display_setup_backlight();
 
-    // Set up SPI0 at 75 MHz for 
-    spi_init(spi0, 500 * 1000);
+    // Set up SPI0 at 80 MHz for 
+    spi_init(spi0, 80 * 1000 * 1000);
     gpio_set_function(D_RX, GPIO_FUNC_SPI);
     gpio_set_function(D_SCK, GPIO_FUNC_SPI);
     gpio_set_function(D_TX, GPIO_FUNC_SPI);
