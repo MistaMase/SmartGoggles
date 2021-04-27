@@ -42,8 +42,8 @@ void display_set_backlight(unsigned char backlight);
 #define ILI9341_SLPOUT      0x11        // Sleep Out
 #define ILI9341_DISPON      0x29        // Display On
 #define ILI9341_MEMWR       0x2C        // Write to frame memory
-#define ILI9341_CASET       0x2A        // TODO
-#define ILI9341_PASET       0x2B        // TODO
+#define ILI9341_CASET       0x2A        // Column Address Set
+#define ILI9341_PASET       0x2B        // Page Address Set
 
 // Display init commands
 static const uint8_t initcmd[] = {
