@@ -4,18 +4,16 @@ int main() {
     // Init stdio
     stdio_init_all();
 
-    // TODO Get Display Working
     // Set up the display
-    //display_setup();
-    //display_set_backlight(0);
+    display_setup();
+    display_set_backlight(50);
 
     // Set up the capactive touch
     touch_setup();
     touch_setup_interrupt();
 
-
-    //uint8_t colors[3][2] = {{0b11111000, 0}, {0b00000111, 0b11100000}, {0, 0b00011111}};
-    //int color_index = 0;
+    //uint8_t color_index = 0;
+    //uint16_t colors[3] = {0xFFFF, 0x0000, 0xF0F0};
 
     while (true){
         // If new touch input, read touch data
@@ -30,6 +28,8 @@ int main() {
         //if(color_index == 3)
         //    color_index = 0;
         //printf("Drawing\n");
+        //sleep_ms(50);
+
     }
     return 0;
 }
