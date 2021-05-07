@@ -5,8 +5,8 @@ void display_setup() {
     // Set up the backlight
     display_setup_backlight();
 
-    // Set up SPI0 at 75 MHz for 
-    spi_init(spi0, 75 * 1000 * 1000);
+    // Set up SPI0 at 80 MHz for 
+    spi_init(spi0, 80 * 1000 * 1000);
     gpio_set_function(D_RX, GPIO_FUNC_SPI);
     gpio_set_function(D_SCK, GPIO_FUNC_SPI);
     gpio_set_function(D_TX, GPIO_FUNC_SPI);
@@ -21,8 +21,6 @@ void display_setup() {
     
     // Make the CS pin availible to picotool
     bi_decl(bi_1pin_with_name(D_CS, "SPI CS"));
-
-    gpio_put(D_CS, 0);
 
     // Set up the data/command pin
     gpio_init(D_DorC);
