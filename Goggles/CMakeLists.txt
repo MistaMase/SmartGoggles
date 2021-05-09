@@ -8,7 +8,7 @@ include(pico_sdk_import.cmake)
 project(Goggles VERSION 1.0.0)
  
 # Link the Project to a source file
-add_executable(Goggles src/main.c src/display.c src/touch.c src/flags.c)
+add_executable(Goggles src/main.c src/display.c src/touch.c src/interrupt.c src/imu.c)
  
 # Link the Project to the pico_stdlib library
 target_link_libraries(Goggles pico_stdlib)

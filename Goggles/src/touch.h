@@ -6,14 +6,13 @@
 #include "pico/stdlib.h"                // Gives the pico stdlib
 #include "pico/binary_info.h"           // Allows for the I2C pins to be mapped
 #include "hardware/gpio.h"              // Allows access to the GPIOs
-#include "flags.h"                      // Sets the flag for a touch interrupt
+#include "interrupt.h"                      // Sets the flag for a touch interrupt
 #include <stdio.h>                      // Should be removed - Prints values of touch data
 
 #define CAP_TOUCH_I2C_ADDR      0x38    // I2C address for the touch IC
 
 void touch_setup(void);
-void touch_read_data(uint16_t touchX[2], uint16_t touchY[2], uint16_t touchID[2]);
+void touch_read_data(uint16_t touchX[2], uint16_t touchY[2], uint16_t touchID[2], uint8_t *num_touches);
 void touch_setup_interrupt(void);
-void touch_callback(void);
 
 #endif

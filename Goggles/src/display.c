@@ -5,8 +5,9 @@ void display_setup() {
     // Set up the backlight
     display_setup_backlight();
 
-    // Set up SPI0 at 80 MHz for 
-    spi_init(spi0, 80 * 1000 * 1000);
+    // Pico max SPI clock is SYS_CLK / 2, so we'll set it to 40 MHz to be safe
+    // Set up SPI0 at 40 MHz for 
+    spi_init(spi0, 10 * 1000 * 1000);
     gpio_set_function(D_RX, GPIO_FUNC_SPI);
     gpio_set_function(D_SCK, GPIO_FUNC_SPI);
     gpio_set_function(D_TX, GPIO_FUNC_SPI);

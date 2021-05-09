@@ -18,7 +18,7 @@ void touch_setup() {
 }
 
 /* Read the data from the capacitive touch panel */
-void touch_read_data(uint16_t touchX[2], uint16_t touchY[2], uint16_t touchID[2]){
+void touch_read_data(uint16_t touchX[2], uint16_t touchY[2], uint16_t touchID[2], uint8_t *num_touches){
     uint8_t buf[16];
 
     // Write to the bus - True to keep master control of bus
@@ -29,6 +29,7 @@ void touch_read_data(uint16_t touchX[2], uint16_t touchY[2], uint16_t touchID[2]
 
     // Determine the number of touches
     uint8_t touches = buf[0x02];
+    *num_touches = touches;
     if ((touches > 2) || (touches == 0)) {
     touches = 0;
     }
@@ -43,25 +44,10 @@ void touch_read_data(uint16_t touchX[2], uint16_t touchY[2], uint16_t touchID[2]
         touchY[i] |= buf[0x06 + i * 6];
         touchID[i] = buf[0x05 + i * 6] >> 4;
     }
-
-    // TODO Remove This
-    for (uint8_t i = 0; i < touches; i++) {
-        printf("ID #: %u\t TouchX: %u\t TouchY: %u\n", touchID[i], touchX[i], touchY[i]);
-    }
-}
-
-/* Callback after the touch interrupt */
-/* Sets a flag notifying of touch data to be retreived */
-/* Should be serviced by the main function by calling touch_read_data(...) */
-void touch_callback() {
-    touch_flags = touch_flags | 1;
 }
 
 /* Configures an interrupt on the touch I2C interrupt pin */
 void touch_setup_interrupt() {
-    // Define the callback function
-    void (*callback) = touch_callback;
-
     // Set up the interrupt
-    gpio_set_irq_enabled_with_callback(T_IRQ, GPIO_IRQ_EDGE_RISE, true, callback);
+    gpio_set_irq_enabled_with_callback(T_IRQ, GPIO_IRQ_EDGE_RISE, true, service_interrupts);
 }
