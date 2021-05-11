@@ -1,5 +1,5 @@
-
-// All pin mappings are relative to the PICO
+/* Defines all module pin mappings */
+/* All pin mappings are relative to the PICO */
 
 // Touch - I2C
 #define T_SCK           7
@@ -20,3 +20,7 @@
 #define IMU_SCL         5
 #define IMU_SDA         4
 #define IMU_IRQ         3
+
+// GPS
+#define GPS_TX          0
+#define GPS_RX          1

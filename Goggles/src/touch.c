@@ -15,6 +15,9 @@ void touch_setup() {
 
     // Make the I2C pins availible to picotool
     bi_decl(bi_2pins_with_func(T_SDA, T_SCK, GPIO_FUNC_I2C));
+
+    // Set up the interrupts
+    touch_setup_interrupt();
 }
 
 /* Read the data from the capacitive touch panel */
@@ -49,5 +52,5 @@ void touch_read_data(uint16_t touchX[2], uint16_t touchY[2], uint16_t touchID[2]
 /* Configures an interrupt on the touch I2C interrupt pin */
 void touch_setup_interrupt() {
     // Set up the interrupt
-    gpio_set_irq_enabled_with_callback(T_IRQ, GPIO_IRQ_EDGE_RISE, true, service_interrupts);
+    gpio_set_irq_enabled_with_callback(T_IRQ, GPIO_IRQ_EDGE_RISE, true, service_gpio_interrupts);
 }

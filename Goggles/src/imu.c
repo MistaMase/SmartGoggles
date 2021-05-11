@@ -1,5 +1,6 @@
 #include "imu.h"
 
+/* Commands to reset the IMU */
 void imu_reset() {
     // Software reset the device (and clear registers)
     uint8_t addr = IMU_PWR_MGMT1;
@@ -15,6 +16,7 @@ void imu_reset() {
     sleep_ms(50);
 }
 
+/* Configures the IMU for use */
 void imu_setup() {
     // Set up I2C at 400 KHz
     i2c_init(i2c0, 400 * 1000);
@@ -71,6 +73,8 @@ void imu_setup() {
     // i2c_write_blocking(i2c0, IMU_I2C_ADDR, &config, 1, false);
 }
 
+/* Reads data from the IMU */
+/* Acceleration, Gyro, Mag, and Temp are fed in as pointers and updated accordingly */
 void imu_read_data(float acceleration[3], float gyro[3], float mag[3], float *temp) {
     // Buffer for incoming data
     uint8_t buffer[6];
@@ -114,7 +118,7 @@ void imu_read_data(float acceleration[3], float gyro[3], float mag[3], float *te
     // Each read is 1 byte and the IMU internal registers are auto-incrementing
     i2c_read_blocking(i2c0, IMU_MAG_I2C_ADDR, buffer, 6, false);
 
-    // Conver the high/low bytes to 2-byte values
+    // Convert the high/low bytes to 2-byte values
     for(int i = 0; i < 3; i++) {
         int16_t m = (buffer[i*2] << 8 | buffer[(i*2) + 1]);
         mag[i] = IMU_MAG_SCALE * (float)m;

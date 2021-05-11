@@ -8,7 +8,7 @@ include(pico_sdk_import.cmake)
 project(Goggles VERSION 1.0.0)
  
 # Link the Project to a source file
-add_executable(Goggles src/main.c src/display.c src/touch.c src/interrupt.c src/imu.c)
+add_executable(Goggles src/main.c src/display.c src/touch.c src/interrupt.c src/imu.c src/gps.c)
  
 # Link the Project to the pico_stdlib library
 target_link_libraries(Goggles pico_stdlib)
@@ -27,7 +27,7 @@ pico_sdk_init()
  
 # Enable USB, UART output
 pico_enable_stdio_usb(Goggles 1)
-pico_enable_stdio_uart(Goggles 1)
+pico_enable_stdio_uart(Goggles 0)
  
 # Enable extra outputs (SWD?)
 pico_add_extra_outputs(Goggles)
